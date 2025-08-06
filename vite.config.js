@@ -1,52 +1,23 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  server: {
-    headers: {
-      'Content-Type': 'text/javascript' // Critical fix
-    }
-  },
   plugins: [react()],
-  define: {
-    'import.meta.env.VITE_SOLANA_RPC': JSON.stringify(process.env.VITE_SOLANA_RPC),
-    'import.meta.env.VITE_BACKEND_URL': JSON.stringify(process.env.VITE_BACKEND_URL)
-  },
   build: {
     outDir: '.',
-    emptyOutDir: true,
-    target: 'esnext',
+    emptyOutDir: false,
     rollupOptions: {
-      input: path.resolve(__dirname, 'main.jsx'), // Explicit JSX entry
+      input: './main.jsx',
       output: {
-        entryFileNames: 'bundle.js', // Fixed output name
-        chunkFileNames: 'chunks/[name]-[hash].js', // Organized chunks
-        assetFileNames: 'assets/[name]-[hash][extname]' // Organized assets
-      },
-      plugins: [
-        {
-          name: 'polyfill-node',
-          resolveId(source) {
-            if (source === 'buffer') return { id: 'buffer', external: true };
-            if (source === 'process') return { id: 'process', external: true };
-            return null;
-          }
-        }
-      ]
-    }
-  },
-  optimizeDeps: {
-    include: [
-      '@solana/web3.js',
-      '@solana/wallet-adapter-base',
-      'buffer',
-      'process'
-    ],
-    esbuildOptions: {
-      define: {
-        global: 'globalThis'
+        format: 'esm', // Explicit ES modules
+        entryFileNames: 'main.js',
+        assetFileNames: '[name][extname]'
       }
     }
+  },
+  server: {
+    headers: {
+      'Content-Type': 'application/javascript'
+    }
   }
-});
+})
