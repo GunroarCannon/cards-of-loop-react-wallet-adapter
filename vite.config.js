@@ -18,7 +18,7 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true
     },
-    rollupOptions: 
+    rollupOptions: {
       input: path.resolve(__dirname, 'index.html'),
       plugins: [
         // Fix buffer/process polyfills
