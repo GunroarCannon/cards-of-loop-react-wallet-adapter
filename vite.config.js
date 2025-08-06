@@ -3,6 +3,11 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
+  server: {
+    headers: {
+      'Content-Type': 'text/javascript' // Critical fix
+    }
+  },
   plugins: [react()],
   define: {
     'import.meta.env.VITE_SOLANA_RPC': JSON.stringify(process.env.VITE_SOLANA_RPC),
