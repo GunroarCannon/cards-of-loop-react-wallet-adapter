@@ -10,4 +10,8 @@ services:
       echo "===== BUILDING ====="
       npm run build
     staticPublishPath: "./dist"
+    routes:
+      - type: rewrite
+        source: "/*"
+        destination: "/index.html"
     nodeVersion: 18
