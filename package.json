@@ -10,10 +10,12 @@
     "render-build": "rm -rf node_modules && npm install --legacy-peer-deps && npm run build"
   },
   "dependencies": {
-    "@solana/wallet-adapter-react": "^0.19.2",
-    "@solana/wallet-adapter-react-ui": "^0.9.23",
-    "@solana/wallet-adapter-phantom": "^0.9.23",
-    "@solana/wallet-adapter-backpack": "0.1.14",
+    "@solana/wallet-adapter-base": "^0.17.7",
+    "@solana/wallet-adapter-react": "^0.15.39",
+    "@solana/wallet-adapter-react-ui": "^0.9.39",
+    "@solana/wallet-adapter-phantom": "^0.16.5",
+    "@solana/wallet-adapter-backpack": "^0.1.14",
+    "@solana/wallet-adapter-wallets": "^0.16.5",
     "@solana/web3.js": "^1.84.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -21,8 +23,8 @@
     "process": "^0.11.10"
   },
   "devDependencies": {
-    "@types/react": "^18.2.56",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.2.1",
     "vite": "^5.1.4",
     "@types/node": "^20.11.0"
