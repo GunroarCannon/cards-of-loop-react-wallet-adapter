@@ -9,7 +9,7 @@ function WalletConnectButton({ gameId }) {
 
   useEffect(() => {
     if (publicKey && gameId) {
-      fetch('https://your-honeycomb-server.com/link-wallet', {
+      fetch('https://cards-of-loop-honeycome-server.onrender.com/link-wallet', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -37,7 +37,7 @@ export default function App() {
   const gameId = query.get('game_id')
 
   return (
-    <ConnectionProvider endpoint="https://api.devnet.solana.com">
+    <ConnectionProvider endpoint={import.meta.env.VITE_SOLANA_RPC}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
           <WalletConnectButton gameId={gameId} />
