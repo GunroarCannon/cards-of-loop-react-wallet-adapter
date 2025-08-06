@@ -1,0 +1,26 @@
+.connect-wallet-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #1a1a2e;
+}
+
+.connect-button {
+  background: #512da8;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+}
+
+.connect-button:hover {
+  background: #311b92;
+  transform: translateY(-2px);
+}
