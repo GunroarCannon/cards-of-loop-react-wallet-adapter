@@ -10,6 +10,10 @@ services:
       echo "===== BUILDING ====="
       npm run build
     staticPublishPath: "."
+    headers:
+      - key: Content-Type
+        value: text/javascript
+        pattern: "*.js"
     routes:
       - type: rewrite
         source: "/*"
