@@ -7,26 +7,34 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && vercel --prod"
+    "deploy": "npm run build && vercel --prod",
+    "render-build": "rm -rf node_modules && npm install --legacy-peer-deps && npm run build"
   },
   "dependencies": {
     "@solana/wallet-adapter-react": "^0.15.17",
     "@solana/wallet-adapter-react-ui": "^0.9.19",
-    "@solana/wallet-adapter-wallets": "^0.17.0",
+    "@solana/wallet-adapter-phantom": "^0.9.7",
+    "@solana/wallet-adapter-backpack": "^0.9.7",
     "@solana/web3.js": "^1.73.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "buffer": "^6.0.3"
+    "buffer": "^6.0.3",
+    "process": "^0.11.10",
+    "crypto-browserify": "^3.12.0",
+    "stream-browserify": "^3.0.0",
+    "assert": "^2.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
     "vite": "^4.3.9",
-    "sass": "^1.62.1"
+    "sass": "^1.62.1",
+    "@types/node": "^20.11.0"
   },
   "browser": {
-    "process": false,
-    "buffer": false
+    "crypto": false,
+    "stream": false,
+    "assert": false
   }
 }
