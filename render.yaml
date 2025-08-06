@@ -1,14 +1,13 @@
 services:
-  # Frontend
+  # Frontend (React/Vite)
   - type: web
     name: cards-of-loop-frontend
     env: static
     buildCommand: |
-      npm install -g npm@latest && 
-      npm install && 
+      npm install --legacy-peer-deps && 
       npm run build
     staticPublishPath: "./dist"
-    nodeVersion: 18  # Explicit Node.js version
+    nodeVersion: 18
     envVars:
       - key: VITE_SOLANA_RPC
         value: https://rpc.test.honeycombprotocol.com
