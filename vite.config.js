@@ -1,20 +1,49 @@
-// vite.config.js (Optimized for Render)
+// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
   define: {
-    // Expose environment variables to your frontend
-    'process.env': {
-      VITE_SOLANA_RPC: JSON.stringify(import.meta.env.VITE_SOLANA_RPC),
-      VITE_BACKEND_URL: JSON.stringify(import.meta.env.VITE_BACKEND_URL)
-    }
+    // CORRECTED: Use direct import.meta.env references
+    'import.meta.env.VITE_SOLANA_RPC': JSON.stringify(process.env.VITE_SOLANA_RPC),
+    'import.meta.env.VITE_BACKEND_URL': JSON.stringify(process.env.VITE_BACKEND_URL)
   },
   build: {
-    // Render-specific optimizations
     outDir: 'dist',
     emptyOutDir: true,
-    target: 'esnext' // For modern browsers
+    target: 'esnext',
+    // Add these to fix Solana wallet adapter issues
+    commonjsOptions: {
+      transformMixedEsModules: true
+    },
+    rollupOptions: {
+      plugins: [
+        // Fix buffer/process polyfills
+        {
+          name: 'polyfill-node',
+          resolveId(source) {
+            if (source === 'buffer') return { id: 'buffer', external: true };
+            if (source === 'process') return { id: 'process', external: true };
+            return null;
+          }
+        }
+      ]
+    }
+  },
+  optimizeDeps: {
+    // Required for Solana dependencies
+    include: [
+      '@solana/web3.js',
+      '@solana/wallet-adapter-base',
+      'buffer',
+      'process'
+    ],
+    esbuildOptions: {
+      // Node.js global to browser globalThis
+      define: {
+        global: 'globalThis'
+      }
+    }
   }
 });
