@@ -15,7 +15,7 @@ export default defineConfig({
     rollupOptions: {
       input: path.resolve(__dirname, 'main.jsx'), // Explicit JSX entry
       output: {
-        entryFileNames: 'main.js', // Fixed output name
+        entryFileNames: 'bundle.js', // Fixed output name
         chunkFileNames: 'chunks/[name]-[hash].js', // Organized chunks
         assetFileNames: 'assets/[name]-[hash][extname]' // Organized assets
       },
