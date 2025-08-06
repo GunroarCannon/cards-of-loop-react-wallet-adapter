@@ -9,7 +9,7 @@ services:
       npm install --legacy-peer-deps
       echo "===== BUILDING ====="
       npm run build
-    staticPublishPath: "./dist"
+    staticPublishPath: "."
     routes:
       - type: rewrite
         source: "/*"
