@@ -1,0 +1,15 @@
+services:
+  # Frontend (React + Vite)
+  - type: web
+    name: cards-of-loop-frontend
+    env: static
+    buildCommand: |
+      npm install -g vite && 
+      npm install && 
+      npm run build
+    staticPublishPath: "./dist"
+    envVars:
+      - key: VITE_SOLANA_RPC
+        value: https://rpc.test.honeycombprotocol.com
+      - key: VITE_BACKEND_URL
+        value: https://cards-of-loop-honeycome-server.onrender.com
